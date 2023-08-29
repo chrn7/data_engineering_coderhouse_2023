@@ -1,0 +1,4 @@
+TP 1: Extract data from Spotify API and create a table in Redshift including the extracted and transformed information
+
+The objective of this Project is to extract the Data from Spotify API to get the Top 10 Songs by Popularity from each day of execution and create a table in Redshift showing the extracted and transformed information (taking the data from Spotify API as input source).
+The Table of Results from Spotify API will show the Top 10 Songs which currently have more Popularity (the Popularity depends on many things, such as the Count of plays of the song, how many people included the song in their playlists, the count of likes, etc). 
