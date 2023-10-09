@@ -1,0 +1,18 @@
+{
+	"Categoría": ["Music", "Sports", "Games", "Entertainment","Education","Science and Technology","Cars and Vehicles","Movies and Animation","Pets and Animals","Travel and Events","Comedy"],
+	
+	"thresholds": {
+		"Music": {"min": 500000, "max": 1800000000},
+		"Sports": {"min": 500000, "max": 1800000000},
+		"Games": {"min": 500000, "max": 1700000000},
+		"Entertainment": {"min": 500000, "max": 1700000000},
+		"Education": {"min": 500000, "max": 1800000000},
+		"Science and Technology": {"min": 500000, "max": 1700000000},
+		"Cars and Vehicles": {"min": 500000, "max": 1500000000},
+		"Movies and Animation": {"min": 500000, "max": 1700000000},
+		"Pets and Animals": {"min": 500000, "max": 1300000000},
+		"Travel and Events": {"min": 500000, "max": 1350000000},
+		"Comedy": {"min": 500000, "max": 1100000000}
+		
+	}
+}

@@ -1,0 +1,4 @@
+﻿requests==2.31.0
+pandas==2.0.3
+psycopg2-binary==2.9.7
+redshift_connector==2.0.914
