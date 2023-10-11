@@ -1,14 +1,27 @@
-# Coderhouse's Data Engineering Example Final Project
+# Coderhouse's Data Engineering Final Project
 
-**Developed by Christian Javier Rivas Nieto**
+**Developed by Christian Javier Rivas Nieto**<br>
+**Email: christian.r@live.com.ar / christian.jrivasn@gmail.com**<br>
+**Linkedin: https://www.linkedin.com/in/christian-javier-rivas-nieto/**
+
+## Title of the Project:
+YouTube Top Videos Data Pipeline with Airflow, Docker, Python, SQL and Amazon Redshift.
+
+
+## Description of the Project:
+Create a Pipeline in Airflow to extract data of the Top Videos in Youtube with highest number of Views, transform this data, combine it with data from a json file containing specific thresholds that I will use for alerts, insert and place the output data in a Data Warehouse in Amazon Redshift. Use of Docker to install all the dependencies (Python libraries) that are needed to run the Pipeline in every computer or device in which we want to execute the Pipeline.
 
 
 ## Requirements:
+- Have Python (Jupyter Notebooks for .ipynb files or Visual Studio Code for .py files).
+- Have Airflow (following you can find a step by step to install it).
 - Have Docker.
+- Have a Redshift Account. I will create a table called "Videos" within a Database in Redshift.
+- I will use Dbeaver to verify the inserted records in the Table of Redshift, and will use PostgreSQL (pyscopg2 library) within my Python Script ("Youtube_ETL.py") in order to carry out the Connection to Redshift, create the table "Videos" in Redshift and Insert the Records in the table whenever the Pipeline is executed. 
 - Have a gmail account for receiving email's alerts.
 
 
-## Description:
+## Description of the Pipeline (process):
 This code gives you all the tools to run the specific DAG called "Pipeline_ingestion_data_from_Youtube_API".
 
 What this DAG does is:
@@ -18,6 +31,7 @@ What this DAG does is:
 3. Task 3: Saves the extracted and transformed data into that Redshift Database (simulating a Data Warehouse). Inserts the data with the "insert_date" column into the table created in step 2.
 4. Task 4: Checks against a config file (config.json) if the values of views of the Videos surpass the thresholds. If they do, it sends an email to whatever address you have configured alerting about the Videos exceeding the limits.
 5. Task 5: Sends an email confirmation of process successfully completed (to the address you have previously configured) when the process finishes correctly.
+
 
 ## Configuring your Credentials:
 In the "Youtube_ETL.py" file, set "sender_email" to your gmail account. Set "sender_email" to whatever address you want the emails to go too (I suggest using the same email msg_from and msg_to).
@@ -29,6 +43,20 @@ Remember: emails may go to SPAM. Check that folder.
 Besides, create 3 more variables in Airflow interface (Admin --> Variables): 
 - "user_redshift", "secret_pass_redshift" variables: with the information of your Redshift account within the "data-engineer-database".
 - "client_API_KEY" variable: with the API_KEY that you obtain to use the Youtube API.
+
+
+## Structure of the Folder of this Project:
+Explains the Directory and file structure to execute the Pipeline and use this Project (Notice that the rest of the files that are in the repository but are not named below, are files added for informational purposes and are explained in the section "Repository Content"):
+
+airflow_docker/<br>
+|-- dags/<br>
+|   |-- DAG_Entregable.py<br>
+|   |-- Youtube_ETL.py<br>
+|   |-- config.json<br>
+|-- docker-compose.yaml<br>
+|-- Dockerfile<br>
+|-- requirements.txt<br>
+|-- README.md<br>
 
 
 ## Usage:
@@ -60,14 +88,13 @@ Then, to complete the installation of Airflow in your computer run the following
 ![DAG Screenshot - process successfully completed](Graph_of_DAG.png)
 
 
-
 ## Repository Content:
 The following repository includes the following files:
 - "Youtube_ETL.py": .py file including the Python script with the 5 tasks of the process (extracting data from the Youtube API and transforming, Connecting to Redshift, Inserting the extracted data into the Redshift table, verifying and sending an email alert if the thresholds are surpassed, and sending an email to confirm that the process has been completed).
 - "DAG_Entregable.py": file creating and setting the DAG parameters, and associating the 5 Tasks of the process with the 5 functions of the "Youtube_ETL.py" Python Script.
-- "Dockerfile": Dockerfile to install all the dependencies (Python libraries) that are needed to run the Pipeline.
+- "Dockerfile": Dockerfile to install all the dependencies (Python libraries) that are needed to run the Pipeline in every computer or device in which we want to execute the Pipeline.
 - "requirements.txt": txt file indicating the versions of each of the libraries that we need to install so that the process could run successfully on any other machine, computer or device.
-- config.json: json file containing the max thresholds of number of Views for each Category (Music, Sports, Education, etc) of the Videos in Youtube. 
+- config.json: json file containing the max thresholds of number of Views for each Category (Music, Sports, Education, etc) of the Videos in Youtube. These thresholds are provided by the Business metrics and targets that we want to analyze.
 - "docker-compose.yaml": The .yaml file orchestrates different containers to communicate with each other. It is used to define the configuration of a container environment or to orchestrate multiple containers.
 The .yaml file in this case orchestrates these 3 images, that is why when running the yaml in the command prompt we have these 3 images in Docker:
 a. "postgres" image: Creates the necessary conditions to install Postgre SQL.
