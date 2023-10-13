@@ -12,7 +12,7 @@ default_args = {
     #'email': 'christian.jrivasn@gmail.com',
     'start_date': datetime(2023, 9, 30),
     'retries': 4,                         # 4 reintentos si falla el proceso
-    'retry_delay': timedelta(minutes=2   # 2 minutos de espera antes de cualquier re intento
+    'retry_delay': timedelta(minutes=5   # 5 minutos de espera antes de cualquier re intento
     )
 }
 
